@@ -82,38 +82,34 @@ Desarrollamos plugins para las principales plataformas de e-commerce existentes,
 
 ###Valores retornados por PagoFlash
 Al finalizar la transacción retornamos un parámetro ('tk') con el cual podrán verificar si la transacción fue satisfactoria o no. Para ello existe el método en nuestro API llamado validarTokenDeTransaccion . A continuación definimos su uso.
+```php
+<?php 
+include_once('api_client/pagoflash.api.client.php');
+$urlCallbacks =urlencode("http://www.mitienda.co/payprocess");
+// Key (Clave) cadena de 32 caracteres generado por la aplicación
+$key_public  = "key_public"; 
+//  (Clave secreta) cadena de 20 caracteres generado por la aplicación.
+$key_secret = "key_secret"; 
 
-	<?php 
-	include_once('api_client/pagoflash.api.client.php');
-	$urlCallbacks =urlencode("http://www.mitienda.co/payprocess");
-	$key_token  = "QomRvCxz5FollLfqd6trsvpJP3TgTpmm"; // Key (Clave) cadena de 32 caracteres generado por la aplicación
-	$key_secret = "40lmIlI1KlPpsU8CT8EZi"; //  (Clave secreta) cadena de 20 caracteres generado por la aplicación.
+$api = new apiPagoflash($key_public,$key_secret, $urlCallbacks);
+$response = $api->validarTokenDeTransaccion($_GET["tk"], $_SERVER['HTTP_USER_AGENT']);
 
-	$api = new apiPagoflash($key_token,$key_secret, $urlCallbacks);
-	$response = $api->validarTokenDeTransaccion($_GET["tk"], $_SERVER['HTTP_USER_AGENT']);
+switch ($responseObj->cod)
+{
+    case "4" : // Sucede cuando los parámetros para identificar el punto de venta no coinciden con los almacenados en la plataforma PagoFlash
+        print "Prametros recibidos no coinciden"; 
+        break;
+    case "6" : // Sucede cuando el token enviado para ser verificado no pertenece al punto de venta.
+        print "Transaccion no pertenece a su punto de venta";
+        break;
+    case "5" : // Sucede cuando la transacción enviada para ser verificada no fue completada en la plataforma.
+        print "Esta transaccion no completada";
+        break;
+    case "1" : // Sucede cuando la transacción enviada para ser verificada fue completada de manera satisfactoria.
+        print "Transaccion valida y procesada satisfactoriamente";
+        break;
 
-	switch ($responseObj->cod)
-	{
-	    case "4" : // Sucede cuando los parámetros para identificar el punto de venta no coinciden con los almacenados en la plataforma PagoFlash
-	        print "Prametros recibidos no coinciden"; 
-	        break;
-	    case "6" : // Sucede cuando el token enviado para ser verificado no pertenece al punto de venta.
-	        print "Transaccion no pertenece a su punto de venta";
-	        break;
-	    case "5" : // Sucede cuando la transacción enviada para ser verificada no fue completada en la plataforma.
-	        print "Esta transaccion no completada";
-	        break;
-	    case "1" : // Sucede cuando la transacción enviada para ser verificada fue completada de manera satisfactoria.
-	        print "Transaccion valida y procesada satisfactoriamente";
-	        break;
+}
 
-	}
-
-	?>
-
-###Botones PagoFlash
-Todas estas imagenes de los botones lo podras encontrar en http://www.pagoflash.com/images/
-
-###Clientes del API PagoFlash
-
-- PHP: 
+?>
+```
