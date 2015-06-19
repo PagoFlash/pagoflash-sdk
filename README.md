@@ -96,19 +96,23 @@ $response = $api->validarTokenDeTransaccion($_GET["tk"], $_SERVER['HTTP_USER_AGE
 
 switch ($responseObj->cod)
 {
-    case "4" : // Sucede cuando los parámetros para identificar el punto de venta no coinciden con los almacenados en la plataforma PagoFlash
+    // Sucede cuando los parámetros para identificar el punto de venta no coinciden 
+    // con los almacenados en la plataforma PagoFlash
+    case "4" : 
         print "Prametros recibidos no coinciden"; 
         break;
-    case "6" : // Sucede cuando el token enviado para ser verificado no pertenece al punto de venta.
+    // Sucede cuando el token enviado para ser verificado no pertenece al punto de venta.
+    case "6" : 
         print "Transaccion no pertenece a su punto de venta";
         break;
-    case "5" : // Sucede cuando la transacción enviada para ser verificada no fue completada en la plataforma.
+    // Sucede cuando la transacción enviada para ser verificada no fue completada en la plataforma.
+    case "5" : 
         print "Esta transaccion no completada";
         break;
-    case "1" : // Sucede cuando la transacción enviada para ser verificada fue completada de manera satisfactoria.
+    // Sucede cuando la transacción enviada para ser verificada fue completada de manera satisfactoria.
+    case "1" : 
         print "Transaccion valida y procesada satisfactoriamente";
         break;
-
 }
 
 ?>
