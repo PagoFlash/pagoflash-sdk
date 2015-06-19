@@ -17,25 +17,35 @@ Aquí encontrará la información necesaria para utilizar de manera correcta el 
 include_once('pagoflash.api.client.php');
 
 $urlCallbacks =urlencode("http://www.misitio.com/callback.php");
-
-$key_public = "key_public"; // Key (Clave) cadena de 32 caracteres generado por la aplicación
-$key_secret = "key_secret"; // (Clave secreta) cadena de 20 caracteres generado por la aplicación.
+// Key (Clave) cadena de 32 caracteres generado por la aplicación
+$key_public = "key_public"; 
+// (Clave secreta) cadena de 20 caracteres generado por la aplicación.
+$key_secret = "key_secret"; 
 
 // si desea ejecutar en el entorno de pruebas pasar (true) en el 4to parametro
 $api = new apiPagoflash($key_token,$key_secret, $urlCallbacks,false);
 
 $cabeceraDeCompra = array(
-    "pc_order_number"   => "8", // Alfanumérico de máximo 45 caracteres.
-    "pc_amount"         => "40" // Float, sin separadores de miles, utilizamos el punto (.) como separadores de Decimales. Máximo dos decimales
+    // Alfanumérico de máximo 45 caracteres.
+    "pc_order_number"   => "8", 
+    // Float, sin separadores de miles, utilizamos el punto (.) como separadores 
+    // de Decimales. Máximo dos decimales
+    "pc_amount"         => "40" 
 );
 
 $ProductItems = array();
 $product_1 = array(
-    'pr_name'    => 'Nombre del producto/servicio vendido', // Nombre.  127 char max.
-    'pr_desc'    => ' Descripción del producto/servicio vendido.', // Descripción .  Maximo 230 caracteres.
-    'pr_price'   => '20',// Precio individual. Float, sin separadores de miles, utilizamos el punto (.) como separadores de Decimales. Máximo dos decimales
-    'pr_qty'     => '1', // Cantidad, Entero sin separadores de miles  
-    'pr_img'     => 'http://www.misitio.com/producto/image/imagen.jpg', // Dirección de imagen.  Debe ser una dirección (url) válida para la imagen.   
+    // Nombre.  127 char max.
+    'pr_name'    => 'Nombre del producto/servicio vendido', 
+    // Descripción .  Maximo 230 caracteres.
+    'pr_desc'    => ' Descripción del producto/servicio vendido.', 
+    // Precio individual. Float, sin separadores de miles, utilizamos 
+    // el punto (.) como separadores de Decimales. Máximo dos decimales
+    'pr_price'   => '20',
+    // Cantidad, Entero sin separadores de miles  
+    'pr_qty'     => '1', 
+    // Dirección de imagen.  Debe ser una dirección (url) válida para la imagen.
+    'pr_img'     => 'http://www.misitio.com/producto/image/imagen.jpg', 
 );
 
 array_push($ProductItems, $product_1);
