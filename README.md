@@ -1,6 +1,6 @@
 #Libreria Cliente PHP para el API de [PagoFlash.com](http://pagoflash.com)
 
-Aquí encontrará la información necesaria para utilizar de manera correcta el API de [PagoFlash](http://pagoflash.com) y así poder realizar el proceso de pago en su sitio Web. De necesitar algún tipo de ayuda puede comunicarse al siguiente correo **developers@pagoflash.com**
+Aquí encontrará la información necesaria para integrar y utilizar el API de [PagoFlash](http://pagoflash.com) en su sitio web. Para utilizar nuestro metodo de pago debes [registrarte](https://app.pagoflash.com/backuser.php/user/new.html?tipo=empresa) como empresa en [nuestro site](http://pagoflash.com). De necesitar algún tipo de ayuda puede comunicarse al siguiente correo **developers@pagoflash.com**
 
 ##Requisitos
 - PHP 5.3 o superior
