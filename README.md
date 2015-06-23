@@ -13,15 +13,10 @@ Aquí encontrará la información necesaria para integrar y utilizar el API de [
 
 ##Uso Basico
 
-sitio de pruebas [http://app-test.pagoflash.com](http://app-test.pagoflash.com)
-cuenta comprador de prueba 
-- usuario: usuario.pagoflash@gmail.com
-- contraseña: Clave.123456
-cuenta empresa de prueba 
-- usuario: vendedor.pagoflash@gmail.com
-- contraseña: Clave.123456
-punto de venta de prueba
-
+- **sitio de pruebas:** [http://app-test.pagoflash.com](http://app-test.pagoflash.com)
+- **cuenta comprador de prueba:** usuario: usuario.pagoflash@gmail.com, contraseña: Clave.123456
+- **cuenta empresa de prueba:** usuario: vendedor.pagoflash@gmail.com, ontraseña: Clave.123456
+- **punto de venta de prueba:** clave publica: sQNTLOoOcWTlpaEZulvbsdrexjHNXxIg, clave privada: dm0P0et31cehdI7yUtzd
 
 ```php
 <?php
