@@ -1,6 +1,6 @@
 #Libreria Cliente PHP para el API de [PagoFlash.com](http://pagoflash.com)
 
-Aquí encontrará la información necesaria para integrar y utilizar el API de [PagoFlash](http://pagoflash.com) en su sitio web. Para utilizar nuestro metodo de pago debes **[crear una cuenta](https://app.pagoflash.com/backuser.php/user/new.html?tipo=empresa)** de empresas en nuestro site y registrar un punto de venta en la seccion **Puntos de Venta**, con esto obtendras la **clave publica** y la **clave privada** del punto de venta necesaria para realizar la integracion del servicio en su site. Si necesitas algún tipo de ayuda puede comunicarse al siguiente correo **developers@pagoflash.com**
+Aquí encontrará la información necesaria para integrar y utilizar el API de [PagoFlash](http://pagoflash.com) en su sitio web. Para utilizar nuestro metodo de pago debes **[crear una cuenta](https://app.pagoflash.com/backuser.php/user/new.html?tipo=empresa)** de empresas en nuestro site y registrar un punto de venta en la seccion **Puntos de Venta**, con esto obtendras la **clave publica** y la **clave privada** del punto de venta, necesaria para realizar la integracion del servicio en su site. Si necesitas algún tipo de ayuda puede comunicarse al siguiente correo **developers@pagoflash.com**
 
 ##Requisitos
 - PHP 5.3 o superior
@@ -13,10 +13,10 @@ Aquí encontrará la información necesaria para integrar y utilizar el API de [
 
 ##Uso Basico
 
-- **sitio de pruebas:** [http://app-test.pagoflash.com](http://app-test.pagoflash.com)
-- **cuenta comprador de prueba:** usuario: usuario.pagoflash@gmail.com, contraseña: Clave.123456
-- **cuenta empresa de prueba:** usuario: vendedor.pagoflash@gmail.com, ontraseña: Clave.123456
-- **punto de venta de prueba:** clave publica: sQNTLOoOcWTlpaEZulvbsdrexjHNXxIg, clave privada: dm0P0et31cehdI7yUtzd
+para hacer pruebas puedes registrate en nuestro **sitio de pruebas:** [http://app-test.pagoflash.com](http://app-test.pagoflash.com) como empresa y crear un **punto de venta** con el cual obtendras tu **key_secret** y **key_token**, para hacer las compras puede utilizar la cuenta de pruebas
+
+- usuario: **usuario.pagoflash@gmail.com**
+- contraseña: **Clave.123456**
 
 ```php
 <?php
