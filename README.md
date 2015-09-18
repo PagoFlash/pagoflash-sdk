@@ -90,7 +90,7 @@ Desarrollamos plugins para las principales plataformas de e-commerce existentes,
   [1111]: https://raw.githubusercontent.com/PagoFlash/pagoflash-sdk/master/pagoflash-woocommerce-plugin.zip
   [2222]: http://mastermarketingla.com/wp-content/uploads/2015/07/woocommerce.png (hover text)
 
-![](http://mastermarketingla.com/wp-content/uploads/2015/07/woocommerce.png =100x20)
+<img src="https://github.com/favicon.ico" width="48">
 
 
 ###Valores retornados por PagoFlash
