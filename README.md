@@ -86,11 +86,11 @@ Desarrollamos plugins para las principales plataformas de e-commerce existentes,
 
 ![OpenCart](http://www.paygatewayonline.com/wp-content/uploads/2014/10/opencart.png "OpenCart") ![Python](http://snag.gy/pyEp4.jpg "Python") ![Magento](http://www.web-design-phuket.com/images/magento.jpg "Magento") ![Prestashop](http://webpay.svea.com/PageFiles/16088/Prestashop_150x75.png "Prestashop")
 
-[![alt text][2222]][1111]
+[<img src="http://mastermarketingla.com/wp-content/uploads/2015/07/woocommerce.png" width="150">][1111]
   [1111]: https://raw.githubusercontent.com/PagoFlash/pagoflash-sdk/master/pagoflash-woocommerce-plugin.zip
   [2222]: http://mastermarketingla.com/wp-content/uploads/2015/07/woocommerce.png (hover text)
 
-<img src="https://github.com/favicon.ico" width="48">
+
 
 
 ###Valores retornados por PagoFlash
