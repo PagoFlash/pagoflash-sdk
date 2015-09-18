@@ -84,7 +84,7 @@ else{
 Desarrollamos plugins para las principales plataformas de e-commerce existentes, de esta manera el proceso de integración con PagoFlash es mucho mas sencillo.
 
 
-![OpenCart](http://www.paygatewayonline.com/wp-content/uploads/2014/10/opencart.png "OpenCart") ![Python](http://snag.gy/pyEp4.jpg "Python") ![Magento](http://www.web-design-phuket.com/images/magento.jpg "Magento") ![Prestashop](http://webpay.svea.com/PageFiles/16088/Prestashop_150x75.png "Prestashop")
+![OpenCart](http://www.paygatewayonline.com/wp-content/uploads/2014/10/opencart.png "OpenCart") ![Python](http://snag.gy/pyEp4.jpg "Python") ![Magento](http://www.web-design-phuket.com/images/magento.jpg "Magento") ![Prestashop](http://webpay.svea.com/PageFiles/16088/Prestashop_150x75.png "Prestashop") ![WooCommerce](http://mastermarketingla.com/wp-content/uploads/2015/07/woocommerce.png "WooCommerce")
 
 ###Valores retornados por PagoFlash
 Al finalizar la transacción retornamos un parámetro ('tk') con el cual podrán verificar si la transacción fue satisfactoria o no. Para ello existe el método en nuestro API llamado validarTokenDeTransaccion . A continuación definimos su uso.
