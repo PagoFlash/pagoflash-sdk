@@ -90,6 +90,8 @@ Desarrollamos plugins para las principales plataformas de e-commerce existentes,
   [1111]: https://raw.githubusercontent.com/PagoFlash/pagoflash-sdk/master/pagoflash-woocommerce-plugin.zip
   [2222]: http://mastermarketingla.com/wp-content/uploads/2015/07/woocommerce.png (hover text)
 
+![](http://mastermarketingla.com/wp-content/uploads/2015/07/woocommerce.png =100x20)
+
 
 ###Valores retornados por PagoFlash
 Al finalizar la transacción retornamos un parámetro ('tk') con el cual podrán verificar si la transacción fue satisfactoria o no. Para ello existe el método en nuestro API llamado validarTokenDeTransaccion . A continuación definimos su uso.
