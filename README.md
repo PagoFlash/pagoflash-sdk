@@ -13,7 +13,7 @@ Aquí encontrará la información necesaria para integrar y utilizar el API de [
 
 ##Uso Basico
 
-para hacer pruebas puedes registrate en nuestro **sitio de pruebas:** [http://app-test.pagoflash.com](http://app-test.pagoflash.com) como empresa y crear un **punto de venta** con el cual obtendras tu **key_secret** y **key_token**, para hacer las compras puede utilizar la cuenta de pruebas
+para hacer pruebas puedes registrate en nuestro **sitio de pruebas:** [http://app-test.pagoflash.com](http://app-test.pagoflash.com) como empresa y crear un **punto de venta** con el cual obtendras tu **key_public** y **key_secret**, para hacer las compras puede utilizar la cuenta de pruebas
 
 - usuario: **usuario.pagoflash@gmail.com**
 - contraseña: **Clave.123456**
