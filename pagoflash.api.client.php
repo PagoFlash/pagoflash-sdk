@@ -50,17 +50,15 @@ class apiPagoflash
     // se está utilizando la versión de prueba
     if($p_modo_prueba)
     {
-      $this->_dominio_base = 'http://pagoflash.local/api_dev.php';
+      $this->_dominio_base = 'http://api-test.pagoflash.com/';
       $v_entorno = self::ENTORNO_PRUEBA;
     }	
     // no se está utilizando la versión de prueba
     else
     {
-      $this->_dominio_base = 'http://pagoflash.local/api_dev.php';  
+      $this->_dominio_base = 'https://api.pagoflash.com';  
       $v_entorno = self::ENTORNO_PRODUCCION;
     }
-    
-    //$this->_dominio_base = 'http://pagoflash/api_dev.php';
     
     $v_entorno = self::ENTORNO_PRUEBA;
     // genera los parametros de autenticacion

@@ -3,10 +3,10 @@
 
     include_once('pagoflash.api.client.php');
 
-    $urlCallbacks =urlencode("http://localhost.com/pf_test/hola.php");
+    $urlCallbacks =urlencode("http:/URLCALLBACK/DEL/SITIO");
     
-    $key_token  = "1EwYKsfo7sVqjMtINiASLAoq7x9jacB1"; // Key (Clave) cadena de 32 caracteres generado por la aplicación
-    $key_secret = "HXQhfWwdehtnUMWxUmfw"; //  (Clave secreta) cadena de 20 caracteres generado por la aplicación.
+    $key_token  = "################################"; // Key (Clave) cadena de 32 caracteres generado por la aplicación
+    $key_secret = "####################"; //  (Clave secreta) cadena de 20 caracteres generado por la aplicación.
 
     $api = new apiPagoflash($key_token,$key_secret, $urlCallbacks);
 
