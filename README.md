@@ -6,12 +6,12 @@ Aquí encontrará la información necesaria para integrar y utilizar el API de [
 - PHP 5.3 o superior
 - libreria curl
 
-##Instalacion
+##Instalación
 
 - Descargar el [sdk](https://raw.githubusercontent.com/PagoFlash/pagoflash-sdk/master/pagoflash.api.client.php) de PagoFlash para php
 - Incluir el sdk en su script principal
 
-##Uso Basico
+##Uso Básico
 
 Para hacer pruebas ingresa en nuestro sitio de pruebas y [regístra una cuenta de negocios](http://app-test.pagoflash.com/register/account-selection.html), luego de llenar y confirmar tus datos, completa los datos de tu perfil selecciona un tipo de punto de venta de tipo **comercio electónico**, llena los datos necesarios y una vez registrado el punto utiliza los codigos **key_public** y **key_secret** generados por la plataforma en el sdk como se muestra a continuación:
 
@@ -20,7 +20,7 @@ Para hacer pruebas ingresa en nuestro sitio de pruebas y [regístra una cuenta d
 include_once('pagoflash.api.client.php');
 
 $urlCallbacks =urlencode("http://www.misitio.com/callback.php");
-// Key (Clave) cadena de 32 caracteres generado por la aplicación
+// (Clave públia) cadena de 32 caracteres generado por la aplicación
 $key_public = "key_public"; 
 // (Clave secreta) cadena de 20 caracteres generado por la aplicación.
 $key_secret = "key_secret"; 
