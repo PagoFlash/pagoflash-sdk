@@ -13,7 +13,7 @@ Aquí encontrará la información necesaria para integrar y utilizar el API de [
 
 ##Uso Basico
 
-para hacer pruebas ingresa en nuestro sitio de pruebas y [regístra una cuenta de negocios](http://app-test.pagoflash.com/user/business.html), luego de llenar y confirmar tus datos, completa los datos de tu perfil selecciona un tipo de punto de venta de tipo **comercio electónico**, llena los datos necesarios y una vez registrado el punto utiliza los codigos **key_public** y **key_secret** generados por la plataforma en el sdk como se muestra a continuación:
+Para hacer pruebas ingresa en nuestro sitio de pruebas y [regístra una cuenta de negocios](http://app-test.pagoflash.com/user/business.html), luego de llenar y confirmar tus datos, completa los datos de tu perfil selecciona un tipo de punto de venta de tipo **comercio electónico**, llena los datos necesarios y una vez registrado el punto utiliza los codigos **key_public** y **key_secret** generados por la plataforma en el sdk como se muestra a continuación:
 
 ```php
 <?php
