@@ -20,7 +20,7 @@ Para hacer pruebas ingresa en nuestro sitio de pruebas y [regístra una cuenta d
 include_once('pagoflash.api.client.php');
 
 $urlCallbacks =urlencode("http://www.misitio.com/callback.php");
-// (Clave públia) cadena de 32 caracteres generado por la aplicación
+// (Clave pública) cadena de 32 caracteres generado por la aplicación
 $key_public = "key_public"; 
 // (Clave secreta) cadena de 20 caracteres generado por la aplicación.
 $key_secret = "key_secret"; 
