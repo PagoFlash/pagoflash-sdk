@@ -81,7 +81,7 @@ if($pfResponse->success){
 - **$key_public** *requerido*: identificador del punto de venta, se genera al crear un punto de venta en una cuenta tipo empresa de PagoFlash, formato: UOmRvAQ4FodjSfqd6trsvpJPETgT9hxZ 
 - **$key_secret** *requerido*: clave privada del punto de venta, se genera al crear un punto de venta en una cuenta tipo empresa de PagoFlash, formato: h0lmI11KlPpsVBCT8EZi
 - **$url_process** *requerido*: url del sitio al cual se realizara la llamada de retorno desde PagoFlash cuando se complete una transaccion.
-- **$test_mode** *opcional, false por defecto*: parametro booleano que indica si las transacciones se ralizaran en el entorno de pruebas o el real.
+- **$test_mode**: parámetro booleano que indica si las transacciones se ralizaran en el entorno de pruebas o el real.
 
 ###Plataformas con Plugins PagoFlash
 Desarrollamos plugins para las principales plataformas de e-commerce existentes, de esta manera el proceso de integración con PagoFlash es mucho mas sencillo.
