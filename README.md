@@ -26,7 +26,7 @@ $key_public = "key_public";
 $key_secret = "key_secret"; 
 
 // si desea ejecutar en el entorno de pruebas pasar (true) en el 4to parametro
-$api = new apiPagoflash($key_token,$key_secret, $urlCallbacks,false);
+$api = new apiPagoflash($key_public,$key_secret, $urlCallbacks,false);
 
 $cabeceraDeCompra = array(
     // Alfanumérico de máximo 45 caracteres.
