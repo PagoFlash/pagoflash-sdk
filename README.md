@@ -18,36 +18,39 @@ Para hacer pruebas ingresa en nuestro sitio de pruebas y [regístra una cuenta d
 ```php
 <?php
 include_once('pagoflash.api.client.php');
-
-$urlCallbacks =urlencode("http://www.misitio.com/callback.php");
-// (Clave pública) cadena de 32 caracteres generado por la aplicación
-$key_public = "key_public"; 
-// (Clave secreta) cadena de 20 caracteres generado por la aplicación.
-$key_secret = "key_secret"; 
-
-// si desea ejecutar en el entorno de pruebas pasar (true) en el 4to parametro
-$api = new apiPagoflash($key_public,$key_secret, $urlCallbacks,false);
+// url de tu sitio donde deberás procesar el pago
+$urlCallbacks = "http://www.misitio.com/procesar_pago.php";
+// cadena de 32 caracteres generada por la aplicación, Ej. aslkasjlkjl2LKLKjkjdkjkljlk&as87
+$key_public = "tu_clave_publica";
+// cadena de 20 caracteres generado por la aplicación. Ej. KJHjhKJH644GGr769jjh
+$key_secret = "tu_clave_secreta";
+// si desea ejecutar en el entorno de producción pasar (false) en el 4to parametro
+$api = new apiPagoflash($key_public,$key_secret, $urlCallbacks,true);
 
 $cabeceraDeCompra = array(
-    // Alfanumérico de máximo 45 caracteres.
-    "pc_order_number"   => "8", 
-    // Float, sin separadores de miles, utilizamos el punto (.) como separadores 
-    // de Decimales. Máximo dos decimales
-    "pc_amount"         => "40" 
+    // Código de la orden (Alfanumérico de máximo 45 caracteres).
+    "pc_order_number"   => "001", 
+    // Monto total de la orden, número decimal sin separadores de miles, 
+    // utiliza el punto (.) como separadores de decimales. Máximo dos decimales
+    // Ej. 9999.99
+    "pc_amount"         => "20000" 
 );
 
 $ProductItems = array();
 $product_1 = array(
-    // Nombre.  127 char max.
-    'pr_name'    => 'Nombre del producto/servicio vendido', 
+    // Id. de tu porducto. Ej. 1
+    'pr_id'    => 1,
+    // Nombre.  127 caracteres máximo.
+    'pr_name'    => 'Nombre del producto-servicio vendido', 
     // Descripción .  Maximo 230 caracteres.
-    'pr_desc'    => ' Descripción del producto/servicio vendido.', 
-    // Precio individual. Float, sin separadores de miles, utilizamos 
-    // el punto (.) como separadores de Decimales. Máximo dos decimales
-    'pr_price'   => '20',
+    'pr_desc'    => 'Descripción del producto-servicio vendido.', 
+    // Precio individual del producto. sin separadores de miles, 
+    // utiliza el punto (.) como separadores de decimales. Máximo dos decimales
+    // Ej. 9999.99
+    'pr_price'   => '20000',
     // Cantidad, Entero sin separadores de miles  
     'pr_qty'     => '1', 
-    // Dirección de imagen.  Debe ser una dirección (url) válida para la imagen.
+    // Dirección de imagen. debe ser una dirección (url) válida para la imagen.
     'pr_img'     => 'http://www.misitio.com/producto/image/imagen.jpg', 
 );
 
@@ -60,9 +63,12 @@ $pagoFlashRequestData = array(
 $response = $api->procesarPago($pagoFlashRequestData, $_SERVER['HTTP_USER_AGENT']);
 $pfResponse = json_decode($response);
 
-if($pfResponse->success)
-    header("Location: ".$pfResponse->url_to_buy);
-else{
+if($pfResponse->success){
+    ?>
+    <a href="<?php echo $pfResponse->url_to_buy ?>" target="_blank">Pagar</a>
+    <?php
+    //header("Location: ".$pfResponse->url_to_buy);
+}else{
     //manejo del error.
 }
 ?>
@@ -93,18 +99,21 @@ Desarrollamos plugins para las principales plataformas de e-commerce existentes,
 ###Valores retornados por PagoFlash
 Al finalizar la transacción retornamos un parámetro ('tk') con el cual podrán verificar si la transacción fue satisfactoria o no. Para ello existe el método en nuestro API llamado validarTokenDeTransaccion . A continuación definimos su uso.
 ```php
-<?php 
-include_once('api_client/pagoflash.api.client.php');
-$urlCallbacks =urlencode("http://www.mitienda.co/payprocess");
-// Key (Clave) cadena de 32 caracteres generado por la aplicación
-$key_public  = "key_public"; 
-//  (Clave secreta) cadena de 20 caracteres generado por la aplicación.
-$key_secret = "key_secret"; 
+<?php
+include_once('pagoflash.api.client.php');
+// url de tu sitio donde deberás procesar el pago
+$urlCallbacks = "http://www.misitio.com/procesar_pago.php";
+// cadena de 32 caracteres generada por la aplicación, Ej. aslkasjlkjl2LKLKjkjdkjkljlk&as87
+$key_public = "tu_clave_publica";
+// cadena de 20 caracteres generado por la aplicación. Ej. KJHjhKJH644GGr769jjh
+$key_secret = "tu_clave_secreta"; 
+//el cuarto parametro (true) es para activar el modo de pruebas para desactivar colocar en **false**
+$api = new apiPagoflash($key_public,$key_secret, $urlCallbacks,true);
 
-$api = new apiPagoflash($key_public,$key_secret, $urlCallbacks);
 $response = $api->validarTokenDeTransaccion($_GET["tk"], $_SERVER['HTTP_USER_AGENT']);
+$responseObj = json_decode($response, true);
 
-switch ($responseObj->cod)
+switch ($responseObj["cod"])
 {
     // Sucede cuando los parámetros para identificar el punto de venta no coinciden 
     // con los almacenados en la plataforma PagoFlash
