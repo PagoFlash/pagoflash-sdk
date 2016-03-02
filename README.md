@@ -11,9 +11,9 @@ Aquí encontrará la información necesaria para integrar y utilizar el API de [
 - Descargar el [sdk](https://raw.githubusercontent.com/PagoFlash/pagoflash-sdk/master/pagoflash.api.client.php) de PagoFlash para php
 - Incluir el sdk en su script principal
 
-##Uso Básico
+##Pasos para la integración
 
-Para hacer pruebas ingresa en nuestro sitio de pruebas y [regístra una cuenta de negocios](http://app-test.pagoflash.com/register/account-selection.html), luego de llenar y confirmar tus datos, completa los datos de tu perfil, selecciona el tipo de punto de venta de **comercio electónico**, llena los datos necesarios y una vez registrado el punto utiliza los codigos **key_public** y **key_secret** generados por la plataforma en el sdk como se muestra a continuación:
+Para hacer pruebas ingresa en nuestro sitio de pruebas y [regístra una cuenta de negocios](http://app-test.pagoflash.com/user/business.html), luego de llenar y confirmar tus datos, completa los datos de tu perfil, selecciona el tipo de punto de venta de **comercio electónico**, llena los datos necesarios y una vez registrado el punto utiliza los codigos **key_public** y **key_secret** generados por la plataforma en el sdk como se muestra a continuación:
 
 ```php
 <?php
