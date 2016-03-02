@@ -78,10 +78,10 @@ if($pfResponse->success){
 
 ###Parametros
 
-- **$key_public**: identificador del punto de venta, se genera al crear un punto de venta en una cuenta tipo empresa de PagoFlash, formato: UOmRvAQ4FodjSfqd6trsvpJPETgT9hxZ 
-- **key_secret** clave privada del punto de venta, se genera al crear un punto de venta en una cuenta tipo empresa de PagoFlash, formato: h0lmI11KlPpsVBCT8EZi
-- **site_url (Callback)** *requerido*: url del sitio al cual se realizara la llamada de retorno desde PagoFlash cuando se complete una transaccion.
-- **test_mode** parametro booleano que indica si las transacciones se ralizaran en el entorno de pruebas o el real.
+- **$key_public** *requerido*: identificador del punto de venta, se genera al crear un punto de venta en una cuenta tipo empresa de PagoFlash, formato: UOmRvAQ4FodjSfqd6trsvpJPETgT9hxZ 
+- **$key_secret** *requerido*: clave privada del punto de venta, se genera al crear un punto de venta en una cuenta tipo empresa de PagoFlash, formato: h0lmI11KlPpsVBCT8EZi
+- **$url_process** *requerido*: url del sitio al cual se realizara la llamada de retorno desde PagoFlash cuando se complete una transaccion.
+- **$test_mode** *opcional, false por defecto*: parametro booleano que indica si las transacciones se ralizaran en el entorno de pruebas o el real.
 
 ###Plataformas con Plugins PagoFlash
 Desarrollamos plugins para las principales plataformas de e-commerce existentes, de esta manera el proceso de integración con PagoFlash es mucho mas sencillo.
@@ -102,7 +102,7 @@ Al finalizar la transacción retornamos un parámetro ('tk') con el cual podrán
 <?php
 include_once('pagoflash.api.client.php');
 // url de tu sitio donde deberás procesar el pago
-$urlCallbacks = "http://www.misitio.com/procesar_pago.php";
+$url_process = "http://www.misitio.com/procesar_pago.php";
 // cadena de 32 caracteres generada por la aplicación, Ej. aslkasjlkjl2LKLKjkjdkjkljlk&as87
 $key_public = "tu_clave_publica";
 // cadena de 20 caracteres generado por la aplicación. Ej. KJHjhKJH644GGr769jjh
