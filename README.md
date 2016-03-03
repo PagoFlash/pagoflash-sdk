@@ -83,19 +83,6 @@ if($pfResponse->success){
 - **$url_process** *requerido*: url del sitio al cual se realizara la llamada de retorno desde PagoFlash cuando se complete una transaccion.
 - **$test_mode**: parámetro booleano que indica si las transacciones se ralizaran en el entorno de pruebas o el real.
 
-###Plataformas con Plugins PagoFlash
-Desarrollamos plugins para las principales plataformas de e-commerce existentes, de esta manera el proceso de integración con PagoFlash es mucho mas sencillo.
-
-
-![OpenCart](http://www.paygatewayonline.com/wp-content/uploads/2014/10/opencart.png "OpenCart") ![Python](http://snag.gy/pyEp4.jpg "Python") ![Magento](http://www.web-design-phuket.com/images/magento.jpg "Magento") ![Prestashop](http://webpay.svea.com/PageFiles/16088/Prestashop_150x75.png "Prestashop")
-
-[<img src="http://mastermarketingla.com/wp-content/uploads/2015/07/woocommerce.png" width="150">][1111]
-  [1111]: https://raw.githubusercontent.com/PagoFlash/pagoflash-sdk/master/pagoflash-woocommerce-plugin.zip
-  [2222]: http://mastermarketingla.com/wp-content/uploads/2015/07/woocommerce.png (hover text)
-
-
-
-
 ###Valores retornados por PagoFlash
 Al finalizar la transacción retornamos un parámetro ('tk') con el cual podrán verificar si la transacción fue satisfactoria o no. Para ello existe el método en nuestro API llamado validarTokenDeTransaccion . A continuación definimos su uso.
 ```php
