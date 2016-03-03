@@ -74,7 +74,7 @@ if($pfResponse->success){
 ?>
 ```
     
-##Documentacion del sdk
+##Documentación del sdk
 
 ###Parametros
 
