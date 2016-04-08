@@ -41,7 +41,7 @@ class Plugin
     $this->base_dir = plugin_dir_path(__FILE__);
 
     // define el directorio base de recursos del plugin
-    $this->base_url = WP_PLUGIN_URL . '/pagoflash-woocommerce/web';
+    $this->base_url = WP_PLUGIN_URL . '/pagoflash-woocommerce-plugin/web';
 
     // instancia el gestor de las plantillas
     $this->template_manager = new TemplateManager;
@@ -100,7 +100,7 @@ class Plugin
   public function onActionPluginsLoaded()
   {
     // registra las traducciones
-    load_plugin_textdomain('pagoflash', false, 'pagoflash-woocommerce/languages');
+    load_plugin_textdomain('pagoflash', false, 'pagoflash-woocommerce-plugin/languages');
   }
 
   /**
@@ -158,7 +158,7 @@ class Plugin
   public function retrievePagoFlashAPI($p_key_token, $p_key_secret, $p_url_callback,
     $p_test_mode = true)
   {
-    require_once WP_PLUGIN_DIR . '/pagoflash-woocommerce/libs/pagoflash-sdk/pagoflash.api.client.php';
+    require_once WP_PLUGIN_DIR . '/pagoflash-woocommerce-plugin/libs/pagoflash-sdk/pagoflash.api.client.php';
 
     return new \apiPagoflash($p_key_token, $p_key_secret, urlencode($p_url_callback), $p_test_mode);
   }
