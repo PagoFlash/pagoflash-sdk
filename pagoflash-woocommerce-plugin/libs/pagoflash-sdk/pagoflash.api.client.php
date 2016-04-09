@@ -51,9 +51,9 @@ class apiPagoflash
     if($p_modo_prueba)
     {
       //$this->_dominio_base = 'http://api-test.pagoflash.com/';
-      $this->_dominio_base = 'http://pagoflash.local/api_dev.php';
+      $this->_dominio_base = 'http://api-test.pagoflash.com';
       $v_entorno = self::ENTORNO_PRUEBA;
-    }	
+    }
     // no se está utilizando la versión de prueba
     else
     {
