@@ -9,9 +9,9 @@
 
 return array(
 	'prod'=>array(
-		'domain'=>"127.0.0.1:8000"
+		'domain'=>"https://app.pagoflash.com"
 	),
 	'dev'=>array(
-		'domain'=>'127.0.0.1:8000'
+		'domain'=>'http://app-test2.pagoflash.com'
 	)
 );
