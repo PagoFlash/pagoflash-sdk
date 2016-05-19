@@ -13,10 +13,11 @@ Aquí encontrará la información necesaria para integrar y utilizar el API de [
 
 ##Pasos para la integración
 
-Para hacer pruebas ingresa en nuestro sitio de pruebas y [regístra una cuenta de negocios](http://app-test.pagoflash.com/user/business.html), luego de llenar y confirmar tus datos, completa los datos de tu perfil, selecciona el tipo de punto de venta de **comercio electónico**, llena los datos necesarios y una vez registrado el punto utiliza los codigos **key_public** y **key_secret** generados por la plataforma en el sdk como se muestra a continuación:
+Para hacer pruebas ingresa en nuestro sitio de pruebas y [regístra una cuenta de negocios](http://app-test2.pagoflash.com/profile/register/business), luego de llenar y confirmar tus datos, completa los datos de tu perfil, registra un punto de venta, llena los datos necesarios y una vez registrado el punto, la plataforma generará códigos **key_token** y **key_secret** que encontrarás en la pestaña **Integración** del punto de venta, utilízalos en el sdk como se muestra a continuación:
 
 ```php
 <?php
+//Importa el archivo pagoflas.api.client.php que contiene las clases que permiten la conexión con el API
 include_once('pagoflash.api.client.php');
 // url de tu sitio donde deberás procesar el pago
 $urlCallbacks = "http://www.misitio.com/procesar_pago.php";
@@ -24,9 +25,11 @@ $urlCallbacks = "http://www.misitio.com/procesar_pago.php";
 $key_public = "tu_clave_publica";
 // cadena de 20 caracteres generado por la aplicación. Ej. KJHjhKJH644GGr769jjh
 $key_secret = "tu_clave_secreta";
-// si desea ejecutar en el entorno de producción pasar (false) en el 4to parametro
+// Si deseas ejecutar en el entorno de producción pasar (false) en el 4to parametro
 $api = new apiPagoflash($key_public,$key_secret, $urlCallbacks,true);
 
+
+//Cabecera de la transacción
 $cabeceraDeCompra = array(
     // Código de la orden (Alfanumérico de máximo 45 caracteres).
     "pc_order_number"   => "001", 
@@ -36,6 +39,7 @@ $cabeceraDeCompra = array(
     "pc_amount"         => "20000" 
 );
 
+//Producto o productos que serán el motivo de la transacción
 $ProductItems = array();
 $product_1 = array(
     // Id. de tu porducto. Ej. 1
@@ -56,13 +60,17 @@ $product_1 = array(
 
 array_push($ProductItems, $product_1);
 
+//La información conjunta para ser procesada
 $pagoFlashRequestData = array(
     'cabecera_de_compra'    => $cabeceraDeCompra, 
     'productos_items'       => $ProductItems
 );
+
+//Se realiza el proceso de pago, devuelve JSON con la respuesta del servidor
 $response = $api->procesarPago($pagoFlashRequestData, $_SERVER['HTTP_USER_AGENT']);
 $pfResponse = json_decode($response);
 
+//Si es exitoso, genera y guarda un link de pago en (url_to_buy) el cual se usará para redirigir al formulario de pago
 if($pfResponse->success){
     ?>
     <a href="<?php echo $pfResponse->url_to_buy ?>" target="_blank">Pagar</a>
@@ -93,9 +101,10 @@ $url_process = "http://www.misitio.com/procesar_pago.php";
 // cadena de 32 caracteres generada por la aplicación, Ej. aslkasjlkjl2LKLKjkjdkjkljlk&as87
 $key_public = "tu_clave_publica";
 // cadena de 20 caracteres generado por la aplicación. Ej. KJHjhKJH644GGr769jjh
-$key_secret = "tu_clave_secreta"; 
-//el cuarto parametro (true) es para activar el modo de pruebas para desactivar colocar en **false**
-$api = new apiPagoflash($key_public,$key_secret, $urlCallbacks,true);
+$key_secret = "tu_clave_secreta";
+$test_mode = true
+//el cuarto parámetro (true) es para activar el modo de pruebas, para desactivar colocar en **false**
+$api = new apiPagoflash($key_public,$key_secret, $urlCallbacks,$test_mode);
 
 $response = $api->validarTokenDeTransaccion($_GET["tk"], $_SERVER['HTTP_USER_AGENT']);
 $responseObj = json_decode($response, true);
