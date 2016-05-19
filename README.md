@@ -91,6 +91,11 @@ if($pfResponse->success){
 - **$url_process** *requerido*: url del sitio al cual se realizara la llamada de retorno desde PagoFlash cuando se complete una transaccion.
 - **$test_mode**: parámetro booleano que indica si las transacciones se ralizaran en el entorno de pruebas o el real.
 
+Utiliza estos números de tarjeta de crédito para realizar las pruebas:
+###- Transacción exitosa:   2222444455556666
+###- Transacción rechazada: 4444444444445555
+(Puedes ingresar cualquier otra información relacionada con la tarjeta)
+
 ###Valores retornados por PagoFlash
 Al finalizar la transacción retornamos un parámetro ('tk') con el cual podrán verificar si la transacción fue satisfactoria o no. Para ello existe el método en nuestro API llamado validarTokenDeTransaccion . A continuación definimos su uso.
 ```php
