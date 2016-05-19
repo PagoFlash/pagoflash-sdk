@@ -260,7 +260,6 @@ class PagoFlashHTTPRequest{
         }
         curl_setopt($v_curl, CURLOPT_HTTPHEADER,$this->getHeadersToCurl());
         $response=curl_exec($v_curl);
-        var_dump($response);
         return $response;
 
     }
