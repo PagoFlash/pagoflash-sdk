@@ -55,36 +55,9 @@ class apiPagoflash
     if($p_modo_prueba){
         $this->_env="dev";
     }
-    return $this;   
-
-    // genera los parametros de autenticacion
-    $this->_credenciales_pf = 
-  "AUTH_KEY_SECRET={$this->_key_secret}"
-      . "&AUTH_KEY_TOKEN={$this->_key_token}"
-      . "&AUTH_SITE_URL={$this->_url_punto_venta}"
-      . "&AUTH_ENV={$v_entorno}";
-  } 
-
-  /**
-   * Indica si se está utilizando el modo de prueba de la API
-   * 
-   * @return boolean
-   */
-  public function esModoPrueba()
-  {
-    return $this->_modo_prueba;
+    return $this;    
   }
   
-  /**
-   * Devuelve el modo actual en el cual opera la API
-   * 
-   * return int
-   */
-  public function getModo()
-  {
-    return ($this->_modo_prueba)? self::ENTORNO_PRUEBA : self::ENTORNO_PRODUCCION;
-  }
-
   /**
    * 
    * @param array $p_datos Datos a utilizar para procesar el pago a través
@@ -102,18 +75,23 @@ class apiPagoflash
 
     // obtiene los parametros indicados como cabecera para la compra
     $v_cabecera_compra = isset($p_datos['cabecera_de_compra']) ? $p_datos['cabecera_de_compra'] : array();
-    
-    foreach($v_cabecera_compra as $k=>$val){ $v_cabecera_compra[strtoupper($k)]=$val; }
+    foreach($v_cabecera_compra as $k=>$val){
+   $v_cabecera_compra[strtoupper($k)]=$val;
+    }
     
     $PagoFlashTokenBuilder= new PagoFlashTokenBuilder($this->_key_token,$this->_key_secret);
     $PagoFlashTokenBuilder->setOrderInformation($p_datos['cabecera_de_compra']['pc_order_number'], $p_datos['cabecera_de_compra']['pc_amount'] );
     foreach($p_datos['productos_items'] as $product_item){
+      
+      if(!array_key_exists('pr_id', $product_item)){$product_item['pr_id'] = null;}
+
         $PagoFlashTokenBuilder->addProduct(
                     $product_item['pr_name'],
                     $product_item['pr_desc'],
                     $product_item['pr_price'],
                     $product_item['pr_qty'],
-                    $product_item['pr_img']
+                    $product_item['pr_img'],
+                    $product_item['pr_id']
                 );
     }
     $response=$PagoFlashTokenBuilder->send(apiPagoflash::$GLOBAL_PARAMETERS[$this->_env]["domain"]);
@@ -121,29 +99,22 @@ class apiPagoflash
   }
   
   /**
-   * Devuelve el último código de error registrado durante el proceso
-   * @return int
+   * 
+   * @param string $token_de_transaction Dato a utilizar para verificar el pago exitoso o no a través
+   * de la plataforma de PagoFlash
+   * 
+   * @return boolean
    */
-  public function getError()
+  public function validarTokenDeTransaccion($token_de_transaction, $p_navegador)
   {
-    return $this->_codigo_error;
-  }
+    $PagoFlashVerifyToken = new PagoFlashVerifyToken($this->_key_token, $this->_key_secret);
+    $PagoFlashVerifyToken->setTransactionToken($token_de_transaction);
+    $response = $PagoFlashVerifyToken->send(self::$GLOBAL_PARAMETERS[$this->_env]["domain"]);
 
-  /**
-   * Genera una solicitud POST a la plataforma de PagoFlash
-   * 
-   * @param string $p_datos Datos a ser enviados a través de la trama HTTP. La
-   * cadena debe estar en el formato "atributo_1=valor_1&atributo_n=valor_n"
-   * @param string $p_navegador Cadena que identifica el navegador utilizado
-   * por el cliente
-   * 
-   * @return Un objeto mixto si la llamada fue exitosa o FALSE en caso contrario
-   */
-
-  private function sendHTTPPOSTREquest(array $data, $format='json',array $auth=array()){
-      
+    return $response;
   }
 }
+/*End of class*/
 
 class PagoFlashTokenBuilder{
     private $order_info=array();
@@ -159,12 +130,14 @@ class PagoFlashTokenBuilder{
     public function setUrlOKRediect($url_ok_redirect){
         $this->parameters["url_ok_redirect"]=$url_redirect;
     }
+
     /**
      * URL a la que se hará la llamada HTTP una vez que el pago haya sido satisfactorio
      * Usar este parámetro para hacer validaciones del pago de forma segura
      * @param string $url_ok_request URL a la que se le hará un llamado una vez que el pago haya sido satisfactorio
      * 
      */
+
     public function setUrlOKRequest($url_ok_request){
         $this->parameters["url_ok_request"]=$url_redirect;
     }
@@ -176,16 +149,16 @@ class PagoFlashTokenBuilder{
                 "PC_AMOUNT"=>$pc_amount
             );
     }
-    public function addProduct($pr_name, $pr_desc, $pr_price, $pr_qty, $pr_img){
+    public function addProduct($pr_name, $pr_desc, $pr_price, $pr_qty, $pr_img, $pr_id){
         $this->products[]=array(
                     'pr_name'    => $pr_name,        // Nombre.  127 char max.
                     'pr_desc'    => $pr_desc, // Descripción .  Maximo 230 caracteres.
                     'pr_price'   => $pr_price,                                         // Precio individual. Float, sin separadores de miles, utilizamos el punto (.) como separadores de Decimales. Máximo dos decimales
                     'pr_qty'     => $pr_qty,                                         // Cantidad, Entero sin separadores de miles  
-                    'pr_img'     => $pr_img, // Dirección de imagen.  Debe ser una dirección (url) válida para la imagen.   
+                    'pr_img'     => $pr_img, // Dirección de imagen.  Debe ser una dirección (url) válida para la imagen.
+                    'pr_id'      => $pr_id //Optional   
         );
     }
-    
     
     
     public function send($domain){
@@ -205,6 +178,8 @@ class PagoFlashTokenBuilder{
         return $request->send($url);
     }
 }
+/*End of class*/
+
 
 class PagoFlashHTTPRequest{
     private $headers=array();
@@ -240,7 +215,7 @@ class PagoFlashHTTPRequest{
         $this->_codigo_error = 0;
     
         $v_curl = curl_init();
-        // no se pudo inicializar la sesión
+        //No se pudo inicializar la sesión
         if(false == $v_curl)
         {
           $this->_codigo_error = apiPagoflash::ERROR_CURL_INIT;
@@ -258,11 +233,49 @@ class PagoFlashHTTPRequest{
             $this->addHeader('Content-Type','application/json');
             $this->addHeader('Content-Length', strlen($data_string));
         }
+
         curl_setopt($v_curl, CURLOPT_HTTPHEADER,$this->getHeadersToCurl());
         $response=curl_exec($v_curl);
+
         return $response;
 
     }
     
 }
+/*End of class*/
+
+
+class PagoFlashVerifyToken{
+    private $requiredParams=array();
+    private $authParams=array();
+    
+    function __construct($key_token, $key_secret)
+    {
+        $this->authParams["KEY_TOKEN"]=$key_token;
+        $this->authParams["KEY_SECRET"]=$key_secret;
+    }
+    
+    public function setTransactionToken($transaction_token)
+    {
+        $this->requiredParams['SELL_TOKEN']=$transaction_token;
+    }    
+        
+    public function send($domain)
+    {
+        $request = new PagoFlashHTTPRequest();
+        $key_to_encript = $this->requiredParams['SELL_TOKEN'].$this->authParams['KEY_TOKEN'];
+        $encripted_key = hash_hmac("sha256",$key_to_encript,$this->authParams["KEY_SECRET"]);
+
+        $postData = $this->requiredParams;
+
+        $request->setData($postData);
+        $request->addHeader("X-Signature", $encripted_key);
+        $request->addHeader("X-Auth-Token", $this->authParams["KEY_TOKEN"]);
+        $url = $domain.'/payment/validate-payment';
+
+        return $request->send($url);
+    }
+}
+/*End of class*/
+
 ?>
