@@ -131,6 +131,10 @@ switch ($responseObj["cod"])
     case "5" : 
         print "Esta transaccion no completada";
         break;
+    // Sucede cuando la transacción enviada para ser verificada ya ha sido validada 
+    case "3" : 
+        print "Transaccion ya ha sido validada";
+        break;
     // Sucede cuando la transacción enviada para ser verificada fue completada 
     // de manera satisfactoria.
     case "1" : 
