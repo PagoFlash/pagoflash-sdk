@@ -163,7 +163,8 @@ class PagoFlashTokenBuilder{
     
     public function send($domain){
         $request=new PagoFlashHTTPRequest();
-        $key_to_encript=$this->order_info["PC_AMOUNT"].$this->order_info["PC_ORDER_NUMBER"].$this->authParams["KEY_TOKEN"];
+        $amount_str=number_format($this->order_info["PC_AMOUNT"], 2, '.', '');
+        $key_to_encript=$amount_str.$this->order_info["PC_ORDER_NUMBER"].$this->authParams["KEY_TOKEN"];
         $encripted_key=hash_hmac("sha256",$key_to_encript,$this->authParams["KEY_SECRET"]);
         $dataToSend=$this->order_info;
         $dataToSend["PRODUCTS"]=$this->products;
