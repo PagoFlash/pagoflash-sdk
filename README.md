@@ -36,7 +36,7 @@ $cabeceraDeCompra = array(
     // Monto total de la orden, número decimal sin separadores de miles, 
     // utiliza el punto (.) como separadores de decimales. Máximo dos decimales
     // Ej. 9999.99
-    "pc_amount"         => "20000" 
+    "pc_amount"         => "20000.00" 
 );
 
 //Producto o productos que serán el motivo de la transacción
@@ -51,7 +51,7 @@ $product_1 = array(
     // Precio individual del producto. sin separadores de miles, 
     // utiliza el punto (.) como separadores de decimales. Máximo dos decimales
     // Ej. 9999.99
-    'pr_price'   => '20000',
+    'pr_price'   => '20000.00',
     // Cantidad, Entero sin separadores de miles  
     'pr_qty'     => '1', 
     // Dirección de imagen. debe ser una dirección (url) válida para la imagen.
