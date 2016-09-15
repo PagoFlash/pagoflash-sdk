@@ -100,16 +100,16 @@ Utiliza estos números de tarjeta de crédito para realizar las pruebas:
 Al finalizar la transacción retornamos un parámetro ('tk') con el cual podrán verificar si la transacción fue satisfactoria o no. Para ello existe el método en nuestro API llamado validarTokenDeTransaccion . A continuación definimos su uso.
 ```php
 <?php
+//Importa el archivo pagoflas.api.client.php que contiene las clases que permiten la conexión con el API
 include_once('pagoflash.api.client.php');
 // url de tu sitio donde deberás procesar el pago
-$url_process = "http://www.misitio.com/procesar_pago.php";
+$urlCallbacks = "http://www.misitio.com/procesar_pago.php";
 // cadena de 32 caracteres generada por la aplicación, Ej. aslkasjlkjl2LKLKjkjdkjkljlk&as87
 $key_public = "tu_clave_publica";
 // cadena de 20 caracteres generado por la aplicación. Ej. KJHjhKJH644GGr769jjh
 $key_secret = "tu_clave_secreta";
-$test_mode = true
-//el cuarto parámetro (true) es para activar el modo de pruebas, para desactivar colocar en **false**
-$api = new apiPagoflash($key_public,$key_secret, $urlCallbacks,$test_mode);
+// Si deseas ejecutar en el entorno de producción pasar (false) en el 4to parametro
+$api = new apiPagoflash($key_public,$key_secret, $urlCallbacks,true);
 
 $response = $api->validarTokenDeTransaccion($_GET["tk"], $_SERVER['HTTP_USER_AGENT']);
 $responseObj = json_decode($response, true);
