@@ -94,6 +94,11 @@ class apiPagoflash
                     $product_item['pr_id']
                 );
     }
+    if(array_key_exists("additional_parameters", $p_datos) && is_array($p_datos["additional_parameters"])){
+        foreach($p_datos["additional_parameters"] as $k=>$val){
+            $PagoFlashTokenBuilder->addParameter($k, $val);
+        }
+    }
     $response=$PagoFlashTokenBuilder->send(apiPagoflash::$GLOBAL_PARAMETERS[$this->_env]["domain"]);
     return $response;
   }
@@ -140,6 +145,10 @@ class PagoFlashTokenBuilder{
 
     public function setUrlOKRequest($url_ok_request){
         $this->parameters["url_ok_request"]=$url_redirect;
+    }
+
+    public function addParameter($name, $value ){
+        $this->parameters[$name] = $value;
     }
     
     

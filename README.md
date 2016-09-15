@@ -17,6 +17,8 @@ Para hacer pruebas ingresa en nuestro sitio de pruebas y [regístra una cuenta d
 
 ```php
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 //Importa el archivo pagoflas.api.client.php que contiene las clases que permiten la conexión con el API
 include_once('pagoflash.api.client.php');
 // url de tu sitio donde deberás procesar el pago
@@ -63,7 +65,11 @@ array_push($ProductItems, $product_1);
 //La información conjunta para ser procesada
 $pagoFlashRequestData = array(
     'cabecera_de_compra'    => $cabeceraDeCompra, 
-    'productos_items'       => $ProductItems
+    'productos_items'       => $ProductItems,
+    "additional_parameters" => array(
+            "url_ok_redirect" =>"http://www.misitio.com/pago_exitoso.html", // en esta url le muestas a tu cliente que el pago fue exitoso
+            "url_ok_request" => "http://www.misitio.com/procesar_pago.php" // en esta url debes verificar la transaccion
+        )
 );
 
 //Se realiza el proceso de pago, devuelve JSON con la respuesta del servidor
@@ -79,7 +85,6 @@ if($pfResponse->success){
 }else{
     //manejo del error.
 }
-?>
 ```
     
 ##Documentación del sdk
