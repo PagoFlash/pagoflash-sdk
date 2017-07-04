@@ -12,6 +12,6 @@ return array(
 		'domain'=>"https://app.pagoflash.com"
 	),
 	'dev'=>array(
-		'domain'=>'http://app-test2.pagoflash.com'
+		'domain'=>'https://api-test.pagoflash.com'
 	)
 );
