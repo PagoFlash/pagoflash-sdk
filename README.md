@@ -13,7 +13,7 @@ Aquí encontrará la información necesaria para integrar y utilizar el API de [
 
 ##Pasos para la integración
 
-Para hacer pruebas ingresa en nuestro sitio de pruebas y [regístra una cuenta de negocios](http://app-test2.pagoflash.com/profile/register/business), luego de llenar y confirmar tus datos, completa los datos de tu perfil, registra un punto de venta, llena los datos necesarios y una vez registrado el punto, la plataforma generará códigos **key_token** y **key_secret** que encontrarás en la pestaña **Integración** del punto de venta, utilízalos en el sdk como se muestra a continuación:
+Para hacer pruebas ingresa en nuestro sitio de pruebas y [regístra una cuenta de negocios](https://app2.pagoflash.com/register), luego de llenar y confirmar tus datos, completa los datos de tu perfil, registra un punto de venta, llena los datos necesarios y una vez registrado el punto, la plataforma generará códigos **key_token** y **key_secret** que encontrarás en la pestaña **Integración** del punto de venta, utilízalos en el sdk como se muestra a continuación:
 
 ```php
 <?php
